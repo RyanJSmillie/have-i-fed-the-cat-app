@@ -1,17 +1,19 @@
 const Sequelize = require('sequelize');
-const { addListener } = require('../app');
+
 const CatModel = require('./cats');
 
-exports.setUpDatabase = () => {
-    const connection = new Sequelize("have-i-fed-the-cat-app", "root", "password", {
+const setUpDatabase = () => {
+    const connection = new Sequelize("have_i_fed_the_cat_app", "root", "password", {
     host: "localhost",
     port: 3307,
     dialect: "mysql"
-    })
+    });
 
-    const Cat = CatModel(connectio, Sequelize);
+    const Cat = CatModel(connection, Sequelize);
 
     connection.sync({alter: true});
 
     return { Cat };
 };
+
+module.exports = setUpDatabase();
